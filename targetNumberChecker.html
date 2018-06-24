@@ -2,106 +2,119 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>targetNumberChecker</title>
+<title>targetNumberChecker ver.2.0</title>
 <script>
 
-	var target;
-	var timeTo;
-	var timeFrom;
-	var numTarget;
-	var numFrom;
-	var numTo;
-	var res;
-	
 　 function isTargetIncluded() {
-	target = document.getElementById("target").value;
-　	timeFrom = document.getElementById("timeFrom").value;
-	timeTo = document.getElementById("timeTo").value;
-	numTarget = document.getElementById("numTarget");
-	numFrom = document.getElementById("numFrom");
-	numTo = document.getElementById("numTo");
-	res = document.getElementById("res");
+
+    var target = document.getElementById("target").value;
+    var timeFrom = document.getElementById("timeFrom").value;
+	var timeTo = document.getElementById("timeTo").value;
+	var numTarget = document.getElementById("numTarget");
+	var numFrom = document.getElementById("numFrom");
+	var numTo = document.getElementById("numTo");
+	var res = document.getElementById("res");
+	var targetNo;
+	var timeFromNo;
+	var timeToNo;
+	
 	//入力内容の確認
 	if (target === "" || timeFrom === "" || timeTo === ""){
-	 alert("入力欄には数字を入力してください");
-	 return false;
+	    alert("入力欄には数字を入力してください");
+	    return false;
 	}
-	else if(timeFrom < 0 || 23 < timeFrom || timeTo< 0 || 23 < timeTo){
-	 alert("0~23の間の数字を入力してください");
-	 return false;
+	else if(timeFrom < 0 || 23 < timeFrom || timeTo< 0 || 23 < timeTo || target < 0 || 23 < target){
+	    alert("0~23の間の数字を入力してください");
+	    return false;
 	}
 	else{
-		//入力結果の表示
-		numTarget.innerHTML = "ターゲット：" + this.target + "時" ;
-		numFrom.innerHTML = "開始時刻：" + this.timeFrom　+ "時" ;
-		numTo.innerHTML = "終了時間：" + this.timeTo　+ "時" ;
-		//文字列から数値へ変換
-		target=Number(target);
-		timeFrom=Number(timeFrom);
-		timeTo=Number(timeTo);
+	    //文字列から数値へ変換
+	    targetNo = Number(target);
+	    timeFromNo = Number(timeFrom);
+	    timeToNo = Number(timeTo);
+	    //入力結果の表示
+	    numTarget.innerHTML = "ターゲット：" + targetNo + "時" ;
+	    numFrom.innerHTML = "開始時刻：" + timeFromNo + "時" ;
+	    numTo.innerHTML = "終了時間：" + timeToNo + "時" ;
 	}
-	
-	  // ケース1． 開始時刻　<　終了時刻
-	  if (timeFrom < timeTo){
-	   alert("ケース１");
-	    if(timeFrom <= target && timeTo > target){
-	     alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
-	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース1:成功)</p>";
+	// ケース1． 開始時刻　<　終了時刻
+	if (timeFromNo < timeToNo){
+	    alert("ケース１");
+	    if(timeFromNo <= targetNo && timeToNo > targetNo){
+	        alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
+	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース1:成功)</p>";
 	    }
 	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
-	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース1:失敗)</p>";
+	        alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
+	        res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース1:失敗)</p>";
 	    }
-	  } 
-	  // ケース2． 開始時刻　>　終了時刻 
-	  else if (timeFrom > timeTo){　
-	   alert("ケース２");
-	    if(timeTo <= target  && timeFrom > target){
-	     alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
-	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
+	} 
+	// ケース2． 開始時刻　>　終了時刻 
+	else if (timeFromNo > timeToNo){　
+	    alert("ケース２");
+	    var targetRes = targetNo;
+        var timeToRes = timeToNo;
+		if(targetNo < timeToNo){
+		   targetNo +=24;
+        }
+        timeToNo += 24;
+		numTarget.innerHTML = "ターゲット：" + targetRes + "時" + "(" + targetNo + "時)" ;
+		numTo.innerHTML = "終了時間：" + timeToRes + "時" + "(" + timeToNo + "時)" ;
+	    if(timeFromNo <= targetNo && timeToNo > targetNo){
+	        alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
+	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース2:失敗)");
 	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース２:失敗)</p>";
 	    }
-	  }
-	  // ケース3． 開始時刻　==　終了時刻 
-	  else if(timeFrom  == timeTo){
-	   alert("ケース３");
-	    if(timeFrom  <= target  && timeTo >= target){
-	     alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
-	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース３:成功)</p>";
+	}
+	// ケース3． 開始時刻　==　終了時刻 
+	else if(timeFromNo  === timeToNo){
+	    alert("ケース３");
+	    if(timeFromNo  <= targetNo  && timeToNo >= targetNo){
+	        alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
+	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース３:成功)</p>";
 	    }
 	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
-	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース３:失敗)</p>";
+	        alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
+	        res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース３:失敗)</p>";
 	    }
-	  }
 	}
+}
 </script>
 </head>
 <body>
  <div>
-     <p>targetNumberChecker</p><hr>  
+    <p>targetNumberChecker</p><hr>  
  </div>
  <form class="form">
+    <div class="number-box">
+        <p style="margin-bottom: -20px;">・ターゲットが含まれているか調べる時間を入力してください(0~23時)</p>
+        <h5>
+    	    ※終了時刻が開始時刻を上回っている時、明日の時間として計算します<br>
+            例）開始時刻が22時、終了時間が5時の場合は22時から翌日の朝5時までを計算範囲内とします
+        </h5>
+        <p>開始時刻　〜　終了時刻</p>
+        <p>
+            <input type="number" name="timeFrom" id="timeFrom" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required/>時 〜 
+            <input type="number" name="timeTo" id="timeTo" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required />時
+        </p>
+    </div>
  <div class="number-box">
     <p>・ターゲット数値を入力してください(0~23時)</p>
-    <p><input type="number" name="target" id="target" placeholder="0" min="0" max="23" required style="width:75px;height:20px;"/>時</p>
- </div>
- <div class="number-box">
-    <p>・ターゲットが含まれているか調べる時間を入力してください(0~23時)</p>
     <p>
-      <input type="number" name="timeFrom" id="timeFrom" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required/>
-      時 〜 <input type="number" name="timeTo" id="timeTo" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required />時
+        <input type="number" name="target" id="target" placeholder="0" min="0" max="23" required style="width:75px;height:20px;"/>時
     </p>
  </div>
- <input type="button" value="ターゲットが含まれているか確認する" style="width:400px;height:20px;" id="checker" onclick="isTargetIncluded()"/>
- </form>
+    <div class="button">
+        <input type="button" value="ターゲットが含まれているか確認する" style="width:400px;height:20px;" id="checker" onclick="isTargetIncluded()"/>
+    </div>
+</form>
  <hr>
- <div id="numTarget">ターゲット：</div>
  <div id="numFrom">開始時刻: </div>
- <div id="numTo">終了時間：</div>
+ <div id="numTo">終了時刻：</div>
+ <div id="numTarget">ターゲット：</div>
  <hr>
  <div id="res">結果：</div>
 </body>
