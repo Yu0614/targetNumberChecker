@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>targetNumberChecker</title>
 <script>
+
 	var target;
 	var timeTo;
 	var timeFrom;
@@ -31,9 +32,9 @@
 	}
 	else{
 		//入力結果の表示
-		numTarget.innerHTML = "ターゲット：" + target ;
-		numFrom.innerHTML = "開始時刻：" + timeFrom ;
-		numTo.innerHTML = "終了時間：" + timeTo ;
+		numTarget.innerHTML = "ターゲット：" + this.target + "時" ;
+		numFrom.innerHTML = "開始時刻：" + this.timeFrom　+ "時" ;
+		numTo.innerHTML = "終了時間：" + this.timeTo　+ "時" ;
 		//文字列から数値へ変換
 		target=Number(target);
 		timeFrom=Number(timeFrom);
@@ -45,11 +46,11 @@
 	   alert("ケース１");
 	    if(timeFrom <= target && timeTo > target){
 	     alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
-	     res.innerHTML = "結果：(ケース1:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース1:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
-	     res.innerHTML = "結果：(ケース1:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース1:失敗)</p>";
 	    }
 	  } 
 	  // ケース2． 開始時刻　>　終了時刻 
@@ -57,11 +58,11 @@
 	   alert("ケース２");
 	    if(timeTo <= target  && timeFrom > target){
 	     alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
-	     res.innerHTML = "結果：(ケース２:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース2:失敗)");
-	     res.innerHTML = "結果：(ケース２:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース２:失敗)</p>";
 	    }
 	  }
 	  // ケース3． 開始時刻　==　終了時刻 
@@ -69,19 +70,16 @@
 	   alert("ケース３");
 	    if(timeFrom  <= target  && timeTo >= target){
 	     alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
-	     res.innerHTML = "結果：(ケース３:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース３:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
-	     res.innerHTML = "結果：(ケース３:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース３:失敗)</p>";
 	    }
 	  }
 	}
-
 </script>
-
 </head>
-
 <body>
  <div>
      <p>targetNumberChecker</p><hr>  

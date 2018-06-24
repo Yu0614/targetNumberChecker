@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>targetNumberChecker</title>
+<title>targetNumberCheckerTest</title>
 <script>
 
 	var target;
@@ -13,18 +13,14 @@
 	var numTo;
 	var res;
 	
-	function getElement(){
-		target = document.getElementById("target").value;
-　		timeFrom = document.getElementById("timeFrom").value;
-		timeTo = document.getElementById("timeTo").value;
-		numTarget = document.getElementById("numTarget");
-		numFrom = document.getElementById("numFrom");
-		numTo = document.getElementById("numTo");
-		res = document.getElementById("res");
-	}
-
 　 function isTargetIncluded() {
-	getElement();
+	target = document.getElementById("target").value;
+　	timeFrom = document.getElementById("timeFrom").value;
+	timeTo = document.getElementById("timeTo").value;
+	numTarget = document.getElementById("numTarget");
+	numFrom = document.getElementById("numFrom");
+	numTo = document.getElementById("numTo");
+	res = document.getElementById("res");
 	//入力内容の確認
 	if (target === "" || timeFrom === "" || timeTo === ""){
 	 alert("入力欄には数字を入力してください");
@@ -36,9 +32,9 @@
 	}
 	else{
 		//入力結果の表示
-		numTarget.innerHTML = "ターゲット：" + target ;
-		numFrom.innerHTML = "開始時刻：" + timeFrom ;
-		numTo.innerHTML = "終了時間：" + timeTo ;
+		numTarget.innerHTML = "ターゲット：" + this.target + "時" ;
+		numFrom.innerHTML = "開始時刻：" + this.timeFrom　+ "時" ;
+		numTo.innerHTML = "終了時間：" + this.timeTo　+ "時" ;
 		//文字列から数値へ変換
 		target=Number(target);
 		timeFrom=Number(timeFrom);
@@ -50,11 +46,11 @@
 	   alert("ケース１");
 	    if(timeFrom <= target && timeTo > target){
 	     alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
-	     res.innerHTML = "結果：(ケース1:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース1:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
-	     res.innerHTML = "結果：(ケース1:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース1:失敗)</p>";
 	    }
 	  } 
 	  // ケース2． 開始時刻　>　終了時刻 
@@ -62,11 +58,11 @@
 	   alert("ケース２");
 	    if(timeTo <= target  && timeFrom > target){
 	     alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
-	     res.innerHTML = "結果：(ケース２:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース2:失敗)");
-	     res.innerHTML = "結果：(ケース２:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース２:失敗)</p>";
 	    }
 	  }
 	  // ケース3． 開始時刻　==　終了時刻 
@@ -74,78 +70,16 @@
 	   alert("ケース３");
 	    if(timeFrom  <= target  && timeTo >= target){
 	     alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
-	     res.innerHTML = "結果：(ケース３:成功) ";
+	     res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース３:成功)</p>";
 	    }
 	    else{
 	     alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
-	     res.innerHTML = "結果：(ケース３:失敗) ";
+	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース３:失敗)</p>";
 	    }
 	  }
 	}
-function isTargetIncluded() {
-	alert(target+","+timeFrom+","+timeTo);
-	//入力内容の確認
-	if (target === "" || timeFrom === "" || timeTo === ""){
-	 alert("入力欄には数字を入力してください");
-	 return false;
-	}
-	else if(timeFrom < 0 || 23 < timeFrom || timeTo< 0 || 23 < timeTo){
-	 alert("0~23の間の数字を入力してください");
-	 return false;
-	}
-	else{
-		//入力結果の表示
-		numTarget.innerHTML = "ターゲット：" + target ;
-		numFrom.innerHTML = "開始時刻：" + timeFrom ;
-		numTo.innerHTML = "終了時間：" + timeTo ;
-		//文字列から数値へ変換
-		target=Number(target);
-		timeFrom=Number(timeFrom);
-		timeTo=Number(timeTo);
-	}
-	
-	  // ケース1． 開始時刻　<　終了時刻
-	  if (timeFrom < timeTo){
-	   alert("ケース１");
-	    if(timeFrom <= target && timeTo > target){
-	     alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
-	     res.innerHTML = "結果：(ケース1:成功) ";
-	    }
-	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
-	     res.innerHTML = "結果：(ケース1:失敗) ";
-	    }
-	  } 
-	  // ケース2． 開始時刻　>　終了時刻 
-	  else if (timeFrom > timeTo){　
-	   alert("ケース２");
-	    if(timeTo <= target  && timeFrom > target){
-	     alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
-	     res.innerHTML = "結果：(ケース２:成功) ";
-	    }
-	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース2:失敗)");
-	     res.innerHTML = "結果：(ケース２:失敗) ";
-	    }
-	  }
-	  // ケース3． 開始時刻　==　終了時刻 
-	  else if(timeFrom  == timeTo){
-	   alert("ケース３");
-	    if(timeFrom  <= target  && timeTo >= target){
-	     alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
-	     res.innerHTML = "結果：(ケース３:成功) ";
-	    }
-	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
-	     res.innerHTML = "結果：(ケース３:失敗) ";
-	    }
-	  }
-	
-}
 </script>
-
 </head>
-
 <body>
  <div>
      <p>targetNumberChecker</p><hr>  
@@ -164,26 +98,11 @@ function isTargetIncluded() {
  </div>
  <input type="button" value="ターゲットが含まれているか確認する" style="width:400px;height:20px;" id="checker" onclick="isTargetIncluded()"/>
  </form>
- 
- <input type="button" value="test" style="width:400px;height:20px;" id="test" >
- <script>
-	document.getElementById("test").onclick = function() {
-		this.target = 0;
-		this.timeFrom = 0;
-		this.timeTo = 0;
-		alert(this.target+","+this.timeFrom+","+this.timeTo);
-		this.isTargetIncluded();
-		//TODO:別ファイルに分けてテスト実行する
-		
-	}
- </script>
- 
  <hr>
  <div id="numTarget">ターゲット：</div>
  <div id="numFrom">開始時刻: </div>
  <div id="numTo">終了時間：</div>
  <hr>
  <div id="res">結果：</div>
-
 </body>
 </html>
