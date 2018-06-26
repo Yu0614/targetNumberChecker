@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<title>targetNumberChecker ver.2.1</title>
-<script>
-
-　 function isTargetIncluded() {
+function isTargetIncluded() {
 
     var target = document.getElementById("target").value;
     var timeFrom = document.getElementById("timeFrom").value;
@@ -35,7 +28,7 @@
 	    //入力結果の表示
 	    numTarget.innerHTML = "ターゲット：" + targetNo + "時" ;
 	    numFrom.innerHTML = "開始時刻：" + timeFromNo + "時" ;
-	    numTo.innerHTML = "終了時間：" + timeToNo + "時" ;
+	    numTo.innerHTML = "終了時刻：" + timeToNo + "時" ;
 	}
 	// ケース1． 開始時刻　<　終了時刻
 	if (timeFromNo < timeToNo){
@@ -53,8 +46,8 @@
 	else if (timeFromNo > timeToNo){　
 	    alert("ケース２");
 		numTarget.innerHTML = "ターゲット：" + targetNo + "時" ;
-		numTo.innerHTML = "終了時間：" + timeToNo ;
-	    if((timeFromNo <= targetNo && targetNo <= 23) || (0 < targetNo && targetNo  < timeToNo)){
+		numTo.innerHTML = "終了時刻：" + timeToNo ;
+	    if(timeFromNo <= targetNo || targetNo  < timeToNo){
 	        alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
 	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
 	    }
@@ -76,40 +69,3 @@
 	    }
 	}
 }
-</script>
-</head>
-<body>
- <div>
-    <p>targetNumberChecker</p><hr>  
- </div>
- <form class="form">
-    <div class="number-box">
-        <p style="margin-bottom: -20px;">・ターゲットが含まれているか調べる時間を入力してください(0~23時)</p>
-        <h5>
-    	    ※終了時刻が開始時刻を上回っている時、明日の時間として計算します<br>
-            例）開始時刻が22時、終了時間が5時の場合は22時から翌日の朝5時までを計算範囲内とします
-        </h5>
-        <p>開始時刻　〜　終了時刻</p>
-        <p>
-            <input type="number" name="timeFrom" id="timeFrom" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required/>時 〜 
-            <input type="number" name="timeTo" id="timeTo" placeholder="0" min="0" max="23" style="width:75px;height:20px;" required />時
-        </p>
-    </div>
- <div class="number-box">
-    <p>・ターゲット数値を入力してください(0~23時)</p>
-    <p>
-        <input type="number" name="target" id="target" placeholder="0" min="0" max="23" required style="width:75px;height:20px;"/>時
-    </p>
- </div>
-    <div class="button">
-        <input type="button" value="ターゲットが含まれているか確認する" style="width:400px;height:20px;" id="checker" onclick="isTargetIncluded()"/>
-    </div>
-</form>
- <hr>
- <div id="numFrom">開始時刻: </div>
- <div id="numTo">終了時刻：</div>
- <div id="numTarget">ターゲット：</div>
- <hr>
- <div id="res">結果：</div>
-</body>
-</html>

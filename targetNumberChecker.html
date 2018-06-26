@@ -1,88 +1,22 @@
+<!--
+株式会社 モバイルファクトリー 採用担当者様 宛
+
+ES課題：
+ある時刻(0時～23時)が、指定した時間の範囲内に含まれるかどうかを調べる
+プログラム
+
+作成者：渡邉優
+作成日：6月25日
+テストケース：ESに別途記載
+使用プログラム言語：html5,css,javascript
+-->
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>targetNumberChecker ver.2.0</title>
-<script>
-
-　 function isTargetIncluded() {
-
-    var target = document.getElementById("target").value;
-    var timeFrom = document.getElementById("timeFrom").value;
-	var timeTo = document.getElementById("timeTo").value;
-	var numTarget = document.getElementById("numTarget");
-	var numFrom = document.getElementById("numFrom");
-	var numTo = document.getElementById("numTo");
-	var res = document.getElementById("res");
-	var targetNo;
-	var timeFromNo;
-	var timeToNo;
-	
-	//入力内容の確認
-	if (target === "" || timeFrom === "" || timeTo === ""){
-	    alert("入力欄には数字を入力してください");
-	    return false;
-	}
-	else if(timeFrom < 0 || 23 < timeFrom || timeTo< 0 || 23 < timeTo || target < 0 || 23 < target){
-	    alert("0~23の間の数字を入力してください");
-	    return false;
-	}
-	else{
-	    //文字列から数値へ変換
-	    targetNo = Number(target);
-	    timeFromNo = Number(timeFrom);
-	    timeToNo = Number(timeTo);
-	    //入力結果の表示
-	    numTarget.innerHTML = "ターゲット：" + targetNo + "時" ;
-	    numFrom.innerHTML = "開始時刻：" + timeFromNo + "時" ;
-	    numTo.innerHTML = "終了時間：" + timeToNo + "時" ;
-	}
-	// ケース1． 開始時刻　<　終了時刻
-	if (timeFromNo < timeToNo){
-	    alert("ケース１");
-	    if(timeFromNo <= targetNo && timeToNo > targetNo){
-	        alert("やりました！ターゲットは範囲内です！(ケース1:成功)");
-	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース1:成功)</p>";
-	    }
-	    else{
-	        alert("残念！ターゲットは範囲外です...(ケース1:失敗)");
-	        res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース1:失敗)</p>";
-	    }
-	} 
-	// ケース2． 開始時刻　>　終了時刻 
-	else if (timeFromNo > timeToNo){　
-	    alert("ケース２");
-	    var targetRes = targetNo;
-        var timeToRes = timeToNo;
-		if(targetNo < timeToNo){
-		   targetNo +=24;
-        }
-        timeToNo += 24;
-		numTarget.innerHTML = "ターゲット：" + targetRes + "時" + "(" + targetNo + "時)" ;
-		numTo.innerHTML = "終了時間：" + timeToRes + "時" + "(" + timeToNo + "時)" ;
-	    if(timeFromNo <= targetNo && timeToNo > targetNo){
-	        alert("やりました！ターゲットは範囲内です！(ケース2:成功)");
-	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース２:成功)</p>";
-	    }
-	    else{
-	     alert("残念！ターゲットは範囲外です...(ケース2:失敗)");
-	     res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース２:失敗)</p>";
-	    }
-	}
-	// ケース3． 開始時刻　==　終了時刻 
-	else if(timeFromNo  === timeToNo){
-	    alert("ケース３");
-	    if(timeFromNo  <= targetNo  && timeToNo >= targetNo){
-	        alert("やりました！ターゲットは範囲内です！(ケース3:成功)");
-	        res.innerHTML = "<p style='background:aqua;width:300px;'>結果：(ケース３:成功)</p>";
-	    }
-	    else{
-	        alert("残念！ターゲットは範囲外です...(ケース3:失敗)");
-	        res.innerHTML = "<p style='background:red;width:300px;'>結果：(ケース３:失敗)</p>";
-	    }
-	}
-}
-</script>
+<title>targetNumberChecker</title>
+<script src="./js/isTargetIncluded.js"></script>
 </head>
 <body>
  <div>
